@@ -1,6 +1,8 @@
 <template>
 <div class="departments">
-    <b-button size="sm" variant="success" v-on:click="addDepartment" class="mb-2">Добавить</b-button>
+    <router-link :to="{name: 'DepartmentCard', params:{id: 'new'}}">
+        <b-button size="sm" variant="success" class="mb-2">Добавить</b-button>
+    </router-link>
     <b-table
         id="departments-table"
         :items="departments"
@@ -10,15 +12,12 @@
         hover
     >
         <template #cell(actions)="row">
-            <b-button size="sm" variant="primary" v-on:click="row.item.edit = true" v-if="!row.item.edit">Редактировать</b-button>
-            <b-button size="sm" variant="success" v-on:click="row.item.edit = false" v-if="row.item.edit">Сохранить</b-button>
-            <b-button size="sm" variant="danger" v-on:click="test(row.item.department_id)">Удалить</b-button>
+            <router-link :to="{name: 'DepartmentCard', params:{id: row.item.department_id}}">
+                <b-button size="sm" variant="primary">Редактировать</b-button>
+            </router-link>
+            <b-button size="sm" variant="danger" v-on:click="deleteDepartment(row.item.department_id)">Удалить</b-button>
         </template>
 
-        <template #cell(name)="row">
-            <input type="text" class="form-control" v-model="row.item.name" v-if="row.item.edit">
-            <label v-else>{{row.item.name}}</label>
-        </template>
     </b-table>
     <b-pagination
         v-model="currentPage"
@@ -75,18 +74,15 @@ export default {
     methods:{
         ...mapMutations({
             'setCurrentPage': 'DepartmentsModule/setPaginationCurrentPage',
+            'setTableToast': 'DepartmentsModule/setTableToast',
         }),
         ...mapActions({
             'fetchDepartments': 'DepartmentsModule/fetchDepartments',
+            'deleteDepartment': 'DepartmentsModule/deleteDepartment'
         }),
-        addDepartment(){
-
-        },
-        test(i){
-            console.log(i)
-        },
         init(){
             this.fetchDepartments();
+            this.setTableToast(this.$bvToast);
         }
     },
     mounted() {

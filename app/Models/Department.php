@@ -4,10 +4,13 @@ namespace App\Models;
 
 use App\Models\Enums\DepartmentsEnum;
 use App\Models\Enums\EmployersEnum;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
+    use HasFactory;
+
     protected $table = DepartmentsEnum::table_departments_name_table;
     protected $primaryKey = DepartmentsEnum::table_departments_id;
 
@@ -25,8 +28,9 @@ class Department extends Model
 
     public function getEmployersMaxSalaryAttribute(){
         $employers = $this->employers;
-        $maxSalary = $employers->max('salary');
-
-        return $maxSalary;
+        if (!empty($employers)){
+            return $employers->max('salary') ?? 0;
+        }
+        return 0;
     }
 }

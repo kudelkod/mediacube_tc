@@ -12,9 +12,9 @@ return new class extends Migration {
             $table->id(EmployersEnum::table_employers_id);
             $table->string(EmployersEnum::table_employers_name, 50);
             $table->string(EmployersEnum::table_employers_surname, 50);
-            $table->string(EmployersEnum::table_employers_patronymic, 50);
-            $table->string(EmployersEnum::table_employers_sex, 6);
-            $table->decimal(EmployersEnum::table_employers_salary, 8, 2, true);
+            $table->string(EmployersEnum::table_employers_patronymic, 50)->nullable();
+            $table->string(EmployersEnum::table_employers_sex, 6)->nullable();
+            $table->decimal(EmployersEnum::table_employers_salary, 8, 2, true)->nullable();
 
             $table->timestamps();
         });

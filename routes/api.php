@@ -15,7 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => '/departments'], function ($route){
-    $route->get('/fetchDepartments', [DepartmentsController::class, 'fetchDepartments'])->name('fetchDepartments');
-});
+
 

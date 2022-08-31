@@ -19,7 +19,6 @@ class DepartmentsResource extends JsonResource
             'name' => $this->name,
             'max_salary' => $this->employersMaxSalary,
             'employers_count' => $this->employersCount,
-            'edit' => false,
         ];
     }
 }

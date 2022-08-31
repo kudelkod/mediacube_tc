@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Modules\Departments\Controllers\DepartmentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("{path?}", [Controller::class, 'index'])->name('index');
+Route::get("/", function (){
+    return view('departments::welcome');
+});
+Route::get("/grid", function (){
+    return view('employers::welcome');
+});
+
+
+

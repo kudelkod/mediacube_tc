@@ -21,4 +21,21 @@ class DepartmentsService implements DepartmentsServiceInterface
 
         return DepartmentsResource::collection($departments);
     }
+
+    public function fetchDepartment($departmentId)
+    {
+        $department = $this->departmentsRepository->fetchDepartment($departmentId);
+
+        return DepartmentsResource::make($department);
+    }
+
+    public function saveDepartment($department)
+    {
+        return $this->departmentsRepository->saveDepartment($department);
+    }
+
+    public function deleteDepartment($departmentId)
+    {
+        return $this->departmentsRepository->deleteDepartment($departmentId);
+    }
 }

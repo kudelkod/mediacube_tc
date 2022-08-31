@@ -29,13 +29,13 @@ export default {
     name: "NavBar",
     computed:{
         grid(){
-            return this.$route.name === "Grid"
+            return this.$route.path.split('/')[1] === "grid"
         },
         employers(){
-            return this.$route.name === "Employers"
+            return this.$route.path.split('/')[1] === "employers"
         },
         departments(){
-            return this.$route.name === "Departments"
+            return this.$route.path.split('/')[1] === "departments"
         },
     },
 }

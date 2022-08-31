@@ -41,6 +41,6 @@ class ProjectInstall extends Command
         $this->call('db:seed');
         $this->call('storage:link');
         $this->call('key:generate');
-
+        $this->call('route:clear');
     }
 }
