@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/", function (){
-    return view('departments::welcome');
+    return redirect('/grid');
 });
 Route::get("/grid", function (){
     return view('employers::welcome');
-});
+})->name('start');
 
 
 
