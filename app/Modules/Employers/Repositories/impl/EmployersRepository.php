@@ -30,6 +30,12 @@ class EmployersRepository implements EmployersRepositoryInterface
         return DB::transaction(function () use ($employer){
             $departments = $employer['employer_departments'];
 
+            $departmentsEmployers = DB::table('departments_employers')->where('employer_id', $employer['employerId'] ?? 0);
+
+            if (!empty($departmentsEmployers->get()->toArray())){
+                $departmentsEmployers->delete();
+            }
+
             $employer = $this->employer->updateOrCreate(
                 ['employer_id' => $employer['employerId'] ?? 0],
                 [
